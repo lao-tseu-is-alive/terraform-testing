@@ -47,12 +47,13 @@ data "exoscale_compute_template" "ubuntu" {
   name = "Linux Ubuntu 20.04 LTS 64-bit"
 }
 
-resource "exoscale_compute" "my-server" {
+resource "exoscale_compute" "goeland_server" {
   zone         = local.zone
-  display_name = "my-server"
+  display_name = "goeland-server"
   size         = "Small"
   template_id  = data.exoscale_compute_template.ubuntu.id
   disk_size    = 50
+  security_groups = ["allow_ssh_to_vdl"]
   key_pair     = "cgil@vortex"
   user_data    = <<EOF
 #cloud-config
@@ -69,4 +70,14 @@ tags = {
     delete = "2h"
   }
 
+}
+
+output "instance_ip_addr" {
+  description = "ip address of vm"
+  value = exoscale_compute.goeland_server.ip_address
+}
+
+output "ssh_connexion" {
+  description = "ssh command to connect to the vm"
+  value = "ssh ${data.exoscale_compute_template.ubuntu.username}@${exoscale_compute.goeland_server.ip_address}"
 }
