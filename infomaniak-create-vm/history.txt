@@ -1,0 +1,20 @@
+   90  openstack keypair create --public-key ~/.ssh/id_ecdsa.pub mykeypair
+   91  cd -
+   92  vim log.txt
+   93  lsa
+   94  terraform init
+   95  terraform plan
+   96  lsa
+   97  terraform --help
+   98  terraform plan -var-file="infomaniak.tfvars"
+   99  terraform apply -var-file="infomaniak.tfvars"
+  100  terraform show -var-file="infomaniak.tfvars"
+  101* terraform destr 
+  102  ssh 195.15.242.14
+  103  ping 195.15.242.14
+  104  terraform destroy -var-file="infomaniak.tfvars"
+  105  lsa
+  106  git status 
+  107  git add main.tf 
+  108  git status 
+  109  history 20 > history.txt
