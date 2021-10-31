@@ -27,12 +27,36 @@ provider "openstack" {
   region      = var.infomaniak_region
 }
 
-# Create a web server
-resource "openstack_compute_instance_v2" "test-server" {
-  name = "infomaniak-vm-test"
+# https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_secgroup_v2
+resource "openstack_compute_secgroup_v2" "secgroup_goeland1" {
+  name        = "goeland_secgroup"
+  description = "my security group to allow ssh and https access"
+
+  rule {
+    from_port   = 22
+    to_port     = 22
+    ip_protocol = "tcp"
+    cidr        = "0.0.0.0/0"
+  }
+
+  rule {
+    from_port   = 443
+    to_port     = 443
+    ip_protocol = "tcp"
+    cidr        = "0.0.0.0/0"
+  }
+}
+
+# Create a VM on OpenStack
+# https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2
+resource "openstack_compute_instance_v2" "goeland-test-server" {
+  name = "infomaniak-vm-goeland-test-server"
+  ##  use one of : openstack image list
   image_id = var.infomaniak_image_id
+  ## use one of : openstack flavor list
   flavor_id = var.infomaniak_flavor_id
   key_pair = "mykeypair"
+  security_groups = ["default", "goeland_secgroup"]
   metadata = {
       gostatus= "test"
   }
@@ -40,3 +64,4 @@ resource "openstack_compute_instance_v2" "test-server" {
       name =  "ext-net1"
   }
 }
+
