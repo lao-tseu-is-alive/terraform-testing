@@ -1,0 +1,38 @@
+    1  sudo apt dist-upgrade 
+    2  ss -tan
+    3  reboot 
+    4  sudo reboot 
+    5  sudo apt-get -y install nginx certbot python3-certbot-nginx
+    6  sudo apt -y install nginx certbot python3-certbot-nginx
+    7  sudo apt update 
+    8  sudo apt install certbot python3-certbot-nginx 
+    9  sudo apt -y install certbot python3-certbot-nginx 
+   10  ping cloud.gil.town
+   11  ip addr
+   12  ss -tla
+   13  exit
+   14  lsa /var/www/
+   15  vim .bashrc
+   16  source .bashrc
+   17  cat .bashrc
+   18  pwd
+   19  source .bashrc
+   20  lsa /var/www/
+   21  lsa /var/www/html/
+   22  ip addr
+   23  vim /var/www/html/index.nginx-debian.html 
+   24  sudo vim /var/www/html/index.nginx-debian.html 
+   25  mkdir -p /var/www/cloud.gil.town/html
+   26  sudo mkdir -p /var/www/cloud.gil.town/html
+   27  sudo cp /var/www/html/index.nginx-debian.html /var/www/cloud.gil.town/html/
+   28  vim /var/www/cloud.gil.town/html/index.nginx-debian.html 
+   29  sudo vim /etc/nginx/sites-available/cloud.gil.town
+   30  server {
+   31  sudo ln -s /etc/nginx/sites-available/cloud.gil.town /etc/nginx/sites-enabled/
+   32  vim /etc/nginx/nginx.conf 
+   33  sudo nginx -t
+   34  sudo systemctl restart nginx.service 
+   35  sudo certbot --nginx
+   36  sudo systemctl restart nginx.service 
+   37  history 
+   38  history >>history_cloud_gil_town.txt
